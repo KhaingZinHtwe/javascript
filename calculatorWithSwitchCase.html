@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Calculator with switch case</title>
+    </head>
+    <body>
+        <form>
+            <label for="num1">Number 1:</label>
+            <input type="text" id="num1" placeholder="Enter a first number" size="20"><br><br>
+            <label for="num2">Number 2:</label>
+            <input type="text" id="num2" placeholder="Enter a second number" size="20"><br><br>
+            <input type="button" id="btnAdd" value="+" onclick="calculator('+')">
+            <input type="button" id="btnSubtract" value="-" onclick="calculator('-')">
+            <input type="button" id="btnMultiply" value="*" onclick="calculator('*')">
+            <input type="button" id="btnDivide" value="/" onclick="calculator('/')">
+            <p id="result" style="font-size: 20px;"></p>
+        </form>
+        <script>
+            function calculator(op){
+                var num1=parseInt(document.getElementById("num1").value);
+                var num2=parseInt(document.getElementById("num2").value);
+                var r=0;
+                switch(op){
+                    case '+' : r=num1+num2;break;
+                    case '-' : r=num1-num2;break;
+                    case '*' : r=num1*num2;break;
+                    case '/' : r=num1/num2;break;
+                }
+
+                document.getElementById("result").innerHTML=r;
+            }
+        </script>
+    </body>
+</html>
