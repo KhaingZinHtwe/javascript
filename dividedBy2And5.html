@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Number divided by 2 and 5</title>
+    </head>
+    <body>
+        <form>
+            <label for="num1">Number 1:</label>
+            <input type="text" id="num1" placeholder="Enter a first number" size="40"><br><br>
+            <label for="num2">Number 2:</label>
+            <input type="text" id="num2" placeholder="Enter a second number" size="40"><br><br>
+            <input type="button" id="btnCheck" value="Check divided by 2 and 5" onclick="dividedBy2And5()">
+        </form>
+        <div id="result"></div>
+        <script>
+            function dividedBy2And5(){
+                    var divided="",notDivided="";
+                    var num1=parseInt(document.getElementById("num1").value);
+                    var num2=parseInt(document.getElementById("num2").value);
+                    if(num1<num2){
+                        for(var i=num1; i<=num2; i++){
+                            if(i%2==0 && i%5==0){
+                                divided+=i+",";
+                            }else{
+                                notDivided+=i+",";
+                            }
+                        }
+                    }else{
+                        for(var i=num2; i<=num1; i++){
+                            if(i%2==0 && i%5==0){
+                                divided+=i+",";
+                            }else{
+                                notDivided+=i+",";
+                            }
+                        }
+                    }
+                    if(divided==""){
+                        divided="no number";
+                    }
+                    document.getElementById("result").innerHTML="Number which divided by 2 and 5: "+divided+"<br>Number which not divided by 2 and 5: "+notDivided;
+                }
+        </script>
+    </body>
+</html>
