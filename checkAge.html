@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Check Age</title>
+    </head>
+    <body>
+        <form>
+            <label for="birthDate">Choose your birthday:</label>
+            <input type="date" id="birthDate"><br>
+            <input type="button" id="btnCheckAge" value="Check Age" onclick="checkAge()">
+        </form>
+        <script>
+            function checkAge(){
+                var currentDate=new Date();
+                var x=document.getElementById("birthDate").value;
+                var birthDate=new Date(x);
+                var birthYear=birthDate.getFullYear();
+                var currentYear=currentDate.getFullYear();
+                
+                var age=currentYear-birthYear;
+                if(age<18){
+                    document.write("Your age is under 18!");
+                }
+                else{
+                    document.write("Your age is over 18!");
+                }
+            }
+        </script>
+    </body>
+</html>
