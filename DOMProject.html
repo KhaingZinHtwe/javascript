@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form>
+                        <input type="text" class="form-control" id="name" placeholder="Name"><br>
+                        <input type="text" class="form-control" id="phone" placeholder="Phone"><br>
+                        <input type="text" class="form-control" id="email" placeholder="Email">
+                    </form>
+                </div>
+                <div class="col-sm-6 pl-5">
+                    <textarea class="form-control" rows="5" id="address" placeholder="Address"></textarea>
+                    <form>
+                        <label for="genderRadio">Gender:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" class="form-check-input" value="Male" name="genderRadio">Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" class="form-check-input" value="Female" name="genderRadio">Female<br>
+                        <label for="major">Major:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="form-check-input" name="major" value="501">501&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="form-check-input" name="major" value="502">502&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="form-check-input" name="major" value="503">503<br>
+                        <input type="button" class="rounded float-right btn btn-outline-info" value="Save" onclick="informationSave()">
+                    </form>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <table class="table table-dark table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Major</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="insertTable">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            var infoList=[];
+            function informationSave(){
+                var subject=[];
+                $.each($("input[name='major']:checked"), function(){            
+                                    subject.push($(this).val());
+                                });
+                                console.log(subject);
+
+                var data={
+                    name: $('#name').val(),
+                    phone:$('#phone').val(),
+                    email:$('#email').val(),
+                    address:$('#address').val(),
+                    gender:$("input[name='genderRadio']:checked").val(),
+                    major: subject
+                }
+                infoList.push(data);
+                console.log(infoList);
+
+                $("#insertTable").empty();
+                infoList.forEach(function(value,index){
+               
+		        $("#insertTable").append(
+                    '<tr>'+
+                        '<td>'+value.name+'</td>'+
+                        '<td>'+value.gender+'</td>'+
+                        '<td>'+value.major+'</td>'+
+                        '<td>'+value.phone+'</td>'+
+                        '<td>'+value.email+'</td>'+
+                        '<td>'+value.address +'</h4>'+
+                        '</tr>');
+                });
+            }
+        </script>
+    </body>
+</html>

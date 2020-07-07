@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .main{
+                margin: 15% 17%;
+                border: 1px solid gray;
+                padding: 15px;
+                background-color: lightgrey;
+                background-image: linear-gradient(rgb(153, 160, 245),rgb(207, 224, 246),rgb(235, 229, 229),rgb(233, 230, 230),rgb(236, 233, 233),rgb(246, 242, 242),rgb(236, 233, 233),rgb(233, 230, 230),rgb(235, 229, 229),rgb(207, 224, 246),rgb(153, 160, 245));
+                height: 450px;
+                width: 800px;
+            }
+            .insertDiv{
+                border: 2px solid darkgray;
+                width:360px;
+                height: auto;
+                margin: 5px;
+                padding: 2px;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <h2>Today Task</h2>
+            <form>
+                <label for="taskName">Task Name:</label>
+                <input type="text" class="form-control" id="taskName" size="40" maxlength="25">
+                <input type="button" value="Add" id="btnAdd">
+            </form>
+            <h4>Task List</h4>
+            <div id="textList">
+               
+            </div>
+        </div>
+        <script>
+            document.getElementById("btnAdd").addEventListener("click",function(){
+                var taskName=document.getElementById("taskName").value;
+
+                var icon=document.createElement("span");
+                icon.addEventListener('click',removeTaskList);
+                icon.setAttribute("class","fa fa-times-circle-o");
+                
+                icon.style.color="tomato";
+                icon.style.float="right";
+
+                var insertDiv=document.createElement("DIV");
+                insertDiv.id="removeNode";
+                insertDiv.classList.add("insertDiv");
+                insertDiv.innerHTML=taskName;
+                insertDiv.appendChild(icon);
+                
+                document.getElementById("textList").appendChild(insertDiv);
+            });
+
+            function removeTaskList(){
+                var node = document.getElementById("removeNode");
+                if (node.parentNode) {
+                    node.parentNode.removeChild(node);
+                }
+                }
+        </script>
+    </body>
+</html>
