@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>Budget App</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    </head>
+    <body>
+    <div style="margin: 15% 17%;border: 1px solid gray;padding: 15px;background-color: lightgrey;background-image: linear-gradient(lightgrey,white,white,white,white,lightgrey,rgb(83, 82, 82));height: 450px;width: 800px;">
+        <h3 style="text-transform: uppercase;margin-left: 10px;">budget app</h3>
+        <div class="firstRow flex-container">
+            <div class="oneCol">
+                <form id="formStyle">
+                    <fieldset style="border-color: mediumseagreen;border-radius: 3px;">
+                        <label for="budgetInputField">Please Enter Your Budget</label><br>
+                        <input type="text" id="budgetInputField" name="budgetInputField" size="30"><br>
+                        <input type="button" id="btnCalculate" onclick="calculateBudget()" value="Calculate" class="budgetButton">
+                    </fieldset>
+                </form>
+            </div>
+            <div class="threeCol">
+                <h6 style="text-transform: uppercase;font-size: 15px;margin-top: 5px;">budget</h6>
+                <i class="fa fa-money" style="color: #3377bb;margin-top: 0;line-height: 10px;"></i>
+                <div style="font-size: 23px;margin-top: 38px;color: mediumseagreen;">
+                    $<span id="showBudget"></span>
+                </div>
+            </div>
+            <div class="threeCol">
+                <h6 style="text-transform: uppercase;font-size: 15px;margin-top: 5px;">expenses</h6>
+                <i class="fa fa-credit-card" aria-hidden="true" style="color: #3377bb;line-height: 10px;"></i>
+                <div style="font-size: 23px;margin-top: 38px;color: rgb(219, 41, 41);">
+                    $<span id="showTotalExpense"></span>
+                </div>
+            </div>
+            <div class="threeCol">
+                <h6 style="text-transform: uppercase;font-size: 15px;margin-top: 5px;">balance</h6>
+                <i class="fa fa-dollar" style="color: #3377bb;line-height: 10px;"></i>
+                <div style="font-size: 23px;margin-top: 38px;color: mediumseagreen;">
+                    $<span id="showBalance"></span>
+                </div>
+            </div>
+        </div>
+        <div class="secondRow flex-container">
+            <div class="oneCol">
+                <form id="formStyle">
+                    <fieldset style="border-color: rgb(219, 41, 41);border-radius: 3px;">
+                        <label for="expenseTitleInputField">Please Enter Your Expense name</label><br>
+                        <input type="text" id="expenseTitleInputField" name="expenseTitleInputField" size="30"><br>
+                        <label for="expanseAmountInputField">Please Enter Expense Amount</label><br>
+                        <input type="text" id="expanseAmountInputField" name="expanseAmountInputField" size="30"><br>
+                        <input type="button" id="btnExpense" onclick="calculateExpense()" value="Add Expense" class="expenseButton">
+                    </fieldset>
+                </form>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expense Title</th>
+                            <th>Expense Value</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="insertRow">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            function calculateBudget(){
+                var newBudget=parseInt(document.getElementById("budgetInputField").value||0);
+                var oldBudget=parseInt(document.getElementById("showBudget").innerHTML||0);
+
+                oldBudget+=newBudget;
+                document.getElementById("showBudget").innerHTML=oldBudget;
+
+                calculateBalance();
+            }
+
+            function calculateExpense(){
+                var expenseAmount=document.getElementById("expanseAmountInputField").value;
+                var expenseTitle=document.getElementById("expenseTitleInputField").value;
+                document.getElementById("showTotalExpense").innerHTML=parseInt(document.getElementById("showTotalExpense").innerHTML||0)+parseInt(expenseAmount);
+                var expenseValue=expenseAmount;
+                
+                $("#insertRow").append(
+                '<tr>'+'<td style="color:rgb(219, 41, 41);font-size: 10px;">-'+expenseTitle+'</td>'+
+                        '<td style="color:rgb(219, 41, 41);font-size: 12px;">'+expenseValue+'</td>'+
+                        '<td><i class="fa fa-pencil-square-o" style="color:blue;line-height:10px;font-size:12px;"></i>'+
+                        '<i class="fa fa-trash" style="color:rgb(219, 41, 41);line-height:10px;font-size:12px;"></i></td>'+
+                '</tr>');
+                
+                calculateBalance();
+            }
+
+            function calculateBalance(){
+                var totalBudget=0,totalExpense=0,totalBalance=0;
+                totalBudget=parseInt(document.getElementById("showBudget").innerHTML||0);
+                totalExpense=parseInt(document.getElementById("showTotalExpense").innerHTML||0);
+                totalBalance=totalBudget-totalExpense;
+                document.getElementById("showBalance").innerHTML=totalBalance;
+            }
+        </script>
+    </div>
+    </body>
+</html>

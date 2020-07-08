@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+}
+.firstRow{
+    height: 40%;
+}
+
+.secondRow{
+    height: 60%;
+    margin-bottom: 5px;
+}
+
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container > div{
+    margin: 0px;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.oneCol{
+    flex: 20%;
+    padding: 10px;
+}
+
+.threeCol{
+    flex: 20%;
+    padding: 5px;
+    line-height: 0px;
+    text-align: center;
+}
+
+table {
+    flex: 400px;
+    border-collapse: collapse;
+    width: 450px;
+    text-transform: uppercase;
+  }
+  
+th, td {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #bdb9b9}
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+ input[type="button"]{
+    margin-top: 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    height: 27px;
+  }
+
+  .budgetButton{
+    border: 1px solid mediumseagreen;
+    color: mediumseagreen;
+  }
+
+  .expenseButton{
+    border: 1px solid rgb(219, 41, 41);
+    color: rgb(219, 41, 41);
+  }
+
+  #formStyle{
+    font-size: 15px;
+    line-height: 24px;
+  }
